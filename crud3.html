@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="crud3_CSS.css">
+
+    <title>CS2550 CRUD Project</title>
+  </head>
+  <body>
+    
+    <div class="container">
+      <h1 align="center">Dynamically Rendered Table of People</h1>
+      <div id="myTable"></div>
+      <button style="float:right;" class="btn btn-danger" onClick="deleteAll()">Delete All</button>
+      <button style="float:right; margin-right:5px;" class="btn btn-primary" onClick="addPerson()">Add New Person</button>
+    </div>
+    
+    <!-- beginning of modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              
+                <h1 align="middle">Edit Profile</h1>
+                <p align="middle">Fields marked with '<span>*</span>' are required</p>
+                  <!-- beginning of form -->
+                  <form id="myForm">
+                     <!-- beginning of flex container -->
+                      <div class="flex-container">
+                        
+                          <div class="form-group">
+                            <label for="firstName"><span>*</span>First Name:</label>
+                            <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First Name" required="true">
+                          </div>
+                          
+                          <div class="form-group">
+                            <label for="lastName"><span>*</span>Last Name:</label>
+                            <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Last Name" required="true">
+                          </div>
+
+                          <div class="form-group">
+                            <label for="city"><span>*</span>City:</label>
+                            <input type="text" class="form-control" name="city" id="city" placeholder="City" required="true">
+                          </div>
+
+                          <div class="form-group">
+                            <label for="state"><span>*</span>State:</label>
+                            <input type="text" class="form-control" name="state" id="state" pattern="[A-Za-z]{2}" placeholder="State" maxlength="2" required="true" title="Field must contain two letters">
+                          </div>
+
+                          <div class="form-group">
+                            <label for="zip"><span>*</span>Zip:</label> 
+                            <input type="text" class="form-control" name="zip" id="zip" placeholder="Zip" pattern="[0-9]{5}" maxlength="5" required="true" title="Zip must be at least 5 numbers long">
+                          </div>
+
+                          <div class="form-group">
+                            <label for="address"><span>*</span>Address:</label>
+                            <input type="text" class="form-control" name="address" id="address" placeholder="Address" required="true">
+                          </div>
+
+                          <div class="form-group">
+                            <label for="phoneNumber"><span>*</span>Phone Number:</label>
+                            <input type="tel" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="Phone Number" pattern="^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$" required="true" title="Field must contain a complete phone number">
+                          </div>
+
+                          <div class="form-group">
+                            <label for="Email"><span>*</span>Email Address:</label>
+                            <input type="email" class="form-control" name="Email" id="Email" placeholder="Email Address" required="true">
+                          </div>
+                          
+                      </div>
+                      <!-- end of flex container -->
+                      <button type="submit" class="btn btn-success">Save</button>
+                      <button class="btn btn-danger" onClick="cancelWarning()">Cancel</button>
+                  </form>
+                  <!-- end of form -->
+            </div>
+          </div>
+        </div>
+        <!-- end of modal -->
+        
+        <!-- beginning of modal -->
+        <div class="modal fade" id="myModal2" role="dialog">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              
+                <h1 align="middle">Add New Person</h1>
+                <p align="middle">Fields marked with '<span>*</span>' are required</p>
+                  <!-- beginning of form -->
+                  <form id="myForm2">
+                     <!-- beginning of flex container -->
+                      <div class="flex-container">
+                        
+                          <div class="form-group">
+                            <label for="firstName"><span>*</span>First Name:</label>
+                            <input type="text" class="form-control" name="firstName" id="firstName2" placeholder="First Name" required="true">
+                          </div>
+                          
+                          <div class="form-group">
+                            <label for="lastName"><span>*</span>Last Name:</label>
+                            <input type="text" class="form-control" name="lastName" id="lastName2" placeholder="Last Name" required="true">
+                          </div>
+
+                          <div class="form-group">
+                            <label for="city"><span>*</span>City:</label>
+                            <input type="text" class="form-control" name="city" id="city2" placeholder="City" required="true">
+                          </div>
+
+                          <div class="form-group">
+                            <label for="state"><span>*</span>State:</label>
+                            <input type="text" class="form-control" name="state" id="state2" pattern="[A-Za-z]{2}" placeholder="State" maxlength="2" required="true" title="Field must contain two letters">
+                          </div>
+
+                          <div class="form-group">
+                            <label for="zip"><span>*</span>Zip:</label> 
+                            <input type="text" class="form-control" name="zip" id="zip2" placeholder="Zip" pattern="[0-9]{5}" maxlength="5" required="true" title="Zip must be at least 5 numbers long">
+                          </div>
+
+                          <div class="form-group">
+                            <label for="address"><span>*</span>Address:</label>
+                            <input type="text" class="form-control" name="address" id="address2" placeholder="Address" required="true">
+                          </div>
+
+                          <div class="form-group">
+                            <label for="phoneNumber"><span>*</span>Phone Number:</label>
+                            <input type="tel" class="form-control" name="phoneNumber" id="phoneNumber2" placeholder="Phone Number" pattern="^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$" required="true" title="Field must contain a complete phone number">
+                          </div>
+
+                          <div class="form-group">
+                            <label for="Email"><span>*</span>Email Address:</label>
+                            <input type="email" class="form-control" name="Email" id="Email2" placeholder="Email Address" required="true">
+                          </div>
+                          
+                      </div>
+                      <!-- end of flex container -->
+                      <button type="submit" class="btn btn-success">Save</button>
+                      <button class="btn btn-danger" onClick="cancelWarning()">Cancel</button>
+                  </form>
+                  <!-- end of form -->
+            </div>
+          </div>
+        </div>
+        <!-- end of modal -->
+        
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="render_table3.js"></script>
+    <script>
+      $(document).ready(function()
+      {
+        createTable();
+      });
+    </script>
+  </body>
+</html>

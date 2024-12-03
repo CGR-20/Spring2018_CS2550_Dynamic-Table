@@ -1,0 +1,36 @@
+.flex-container
+{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flex-container div
+{
+    width: 50%;
+    padding: 1%;
+}
+
+form
+{
+    padding: 10px;
+}
+
+.container h1
+{
+    padding-bottom: 30px;
+}
+
+span
+{
+    color: red;
+}
+
+form button
+{
+    padding: 1%;
+}
+
+button
+{
+    padding:10px;
+}
